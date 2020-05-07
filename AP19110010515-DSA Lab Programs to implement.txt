@@ -1,0 +1,289 @@
+                                             DSA-Lab Programs to implement
+Jaya Harshith Ambati
+AP19110010515
+CSE-H
+
+
+
+1). Write a program for the Insertion sort algorithm.
+
+#include<stdio.h>
+void main()
+{
+   int i, j, n, temp, arr[50];
+
+   printf("Enter  number of elements in the array= ");
+   scanf("%d",&n);
+   printf("Enter %d elements=",n);
+   for(i=0; i<n; i++)
+      scanf("%d",&arr[i]);
+   for(i=1; i<n; i++)
+   {
+      temp=arr[i];
+      j=i-1;
+      while((temp<arr[j])&&(j>=0))
+      {
+         arr[j+1]=arr[j];
+         j=j-1;
+      }
+      arr[j+1]=temp;
+   }
+
+   printf("The order of Sorted elements is= ");
+   for(i=0; i<n; i++)
+      printf(" %d",arr[i]);
+
+ 
+}
+
+
+Output of the program:
+
+Enter  number of elements in the array= 5                                                                                        
+Enter 5 elements=2                                                                                                               
+1                                                                                                                                
+3                                                                                                                                
+5                                                                                                                                
+4                                                                                                                                
+The order of Sorted elements is=  1 2 3 4 5 
+
+
+
+2). Write a program for the Selection sort algorithm.  
+
+#include <stdio.h>
+void main()
+{
+    int arr[50], n, i, j, position, swap;
+    printf("Enter number of elements in the array=");
+    scanf("%d", &n);
+    printf("Enter %d elements =", n);
+    for (i = 0; i < n; i++)
+       scanf("%d", &arr[i]);
+    for(i = 0; i < n - 1; i++)
+    {
+         position=i;
+         for(j = i + 1; j < n; j++)
+         {
+            if(arr[position] > arr[j])
+                position=j;
+         }
+        if(position != i)
+        {
+             swap=arr[i];
+             arr[i]=arr[position];
+             arr[position]=swap;
+        }
+    }
+    printf("The sorted array in ascending order is =");
+    for(i = 0; i < n; i++)
+    printf("%d\t",  arr[i]);
+
+}
+
+Output of the program:
+
+Enter number of elements in the array=5                                                                                          
+Enter 5 elements =2                                                                                                              
+3                                                                                                                                
+1                                                                                                                                
+5                                                                                                                                
+4                                                                                                                                
+The sorted array in ascending order is =1      2       3       4       5
+
+
+
+3). Write a program for Bubble sort algorithm.
+
+#include<stdio.h>
+void main()
+{
+      int arr[50], n, i, j, swap; 
+      printf("Enter number of elements in the array=");
+      scanf("%d", &n); 
+      printf("Enter %d elements in array =", n); 
+      for(i = 0; i < n; i++)
+      scanf("%d", &arr[i]); 
+      for(i = 0 ; i < n - 1; i++)
+      {
+        for(j = 0 ; j < n-i-1; j++)
+        {
+          if(arr[j] > arr[j+1]) 
+          {
+              swap=arr[j];
+              arr[j]=arr[j+1];
+              arr[j+1]=swap;
+          }
+        }
+     } 
+     printf("The sorted array in ascending order  is ="); 
+     for(i = 0; i < n; i++)
+     printf("%d\t", arr[i]);
+
+}
+
+
+Output of the program:
+
+Enter number of elements in the array=5                                                                                          
+Enter 5 elements in array =2                                                                                                     
+4                                                                                                                                
+3                                                                                                                                
+1                                                                                                                                
+5                                                                                                                                
+The sorted array in ascending order  is =1      2       3       4       5  
+
+
+
+4).  Write a program for the Merge sort algorithm.
+
+
+#include <stdio.h>
+void merge_sort(int i, int j, int a[], int aux[]) 
+{
+    if (j <= i) 
+    {
+        return; 
+    }
+    int mid = (i + j) / 2;
+    merge_sort(i, mid, a, aux);    
+    merge_sort(mid + 1, j, a, aux);     
+    int pointer_left = i;      
+    int pointer_right = mid + 1;    
+    int k;      
+    for (k = i; k <= j; k++) 
+    {
+        if (pointer_left == mid + 1) 
+        {     
+            aux[k] = a[pointer_right];
+            pointer_right++;
+        } 
+        else if (pointer_right == j + 1) 
+        {        
+            aux[k] = a[pointer_left];
+            pointer_left++;
+        } 
+        else if (a[pointer_left] < a[pointer_right]) {        
+            aux[k] = a[pointer_left];
+            pointer_left++;
+        }
+        else 
+        {        
+            aux[k] = a[pointer_right];
+            pointer_right++;
+        }
+    }
+
+    for (k = i; k <= j; k++) 
+    {      
+        a[k] = aux[k];
+    }
+}
+
+
+void main() 
+{
+  int a[50], aux[50], n, i, d, swap;
+  printf("Enter number of elements in the array=");
+  scanf("%d", &n);
+  printf("Enter %d elements of the array=", n);
+  for (i = 0; i < n; i++)
+    scanf("%d", &a[i]);
+  merge_sort(0, n - 1, a, aux);
+  printf("The sorted array elements=");
+  for (i = 0; i < n; i++)
+     printf("%d\n", a[i]);
+ 
+  
+}
+
+Output of the program:
+
+Enter number of elements in the array=5                                                                                          
+Enter 5 elements of the array=2                                                                                                  
+4                                                                                                                                
+5                                                                                                                                
+1                                                                                                                                
+3                                                                                                                                
+The sorted array elements=1 
+2                                                                                                                                
+3                                                                                                                                
+4                                                                                                                                
+5                                                                                                                                
+
+
+ 
+
+5).  Write a program for the Heap sort algorithm.
+
+#include<stdio.h>
+void create(int []);
+void down_adjust(int [],int);
+void main()
+{
+	int heap[30],n,i,last,temp;
+    printf("Enter number of elements=");
+	scanf("%d",&n);
+    printf("Enter %d elements=",n);
+	for(i=1; i<=n; i++)
+		scanf("%d",&heap[i]);
+	heap[0]=n;
+	create(heap);
+	while(heap[0] > 1)
+	{
+	
+		last=heap[0];
+		temp=heap[1];
+		heap[1]=heap[last];
+		heap[last]=temp;
+		heap[0]--;
+		down_adjust(heap,1);
+	}
+	printf("Array elements after sorting=",n);
+	for(i=1; i<=n; i++)
+		printf("%d ",heap[i]);
+
+}
+void create(int heap[])
+{
+	int i,n;
+	n=heap[0]; 
+
+	for(i=n/2; i>=1; i--)
+		down_adjust(heap,i);
+}
+void down_adjust(int heap[],int i)
+{
+	int j,temp,n,flag=1;
+	n=heap[0];
+    while(2*i<=n && flag==1)
+	{
+		j=2*i;    
+		if(j+1<=n && heap[j+1] > heap[j])
+			j=j+1;
+		if(heap[i] > heap[j])
+			flag=0;
+		else
+		{
+			temp=heap[i];
+			heap[i]=heap[j];
+			heap[j]=temp;
+			i=j;
+		}
+	}
+}
+
+Output of the program:
+
+Enter number of elements=5                                                                                                       
+Enter 5 elements=2                                                                                                               
+1                                                                                                                                
+3                                                                                                                                
+5                                                                                                                                
+4                                                                                                                                
+Array elements after sorting=1 2 3 4 5      
+
+
+
+
+
